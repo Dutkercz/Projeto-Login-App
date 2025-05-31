@@ -1,6 +1,8 @@
 package Dutkercz.com.github.project_login_app.entities;
 
+import Dutkercz.com.github.project_login_app.dtos.UsuarioRequestDTO;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,7 +38,16 @@ public class Usuario implements UserDetails {
         this.status = status;
     }
 
-    public Long getId() {
+  public Usuario(@Valid UsuarioRequestDTO requestDTO) {
+      this.id = null;
+      this.name = requestDTO.name();
+      this.email = requestDTO.email();
+      this.password = requestDTO.password();
+      this.roles = UserRoles.ROLE_USUARIO;
+      this.status = UserStatus.ACTIVE;
+  }
+
+  public Long getId() {
         return id;
     }
 
