@@ -38,11 +38,11 @@ public class Usuario implements UserDetails {
         this.status = status;
     }
 
-  public Usuario(@Valid UsuarioRequestDTO requestDTO) {
+  public Usuario(@Valid UsuarioRequestDTO requestDTO, String pwEncoded) {
       this.id = null;
       this.name = requestDTO.name();
       this.email = requestDTO.email();
-      this.password = requestDTO.password();
+      this.password = pwEncoded;
       this.roles = UserRoles.ROLE_USUARIO;
       this.status = UserStatus.ACTIVE;
   }
