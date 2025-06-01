@@ -1,10 +1,14 @@
 package Dutkercz.com.github.project_login_app.services;
 
 import Dutkercz.com.github.project_login_app.dtos.UsuarioRequestDTO;
+import Dutkercz.com.github.project_login_app.dtos.UsuarioResponseDTO;
+import Dutkercz.com.github.project_login_app.dtos.UsuarioUpdateDTO;
 import Dutkercz.com.github.project_login_app.entities.Usuario;
 import Dutkercz.com.github.project_login_app.repositories.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,5 +37,16 @@ public class UsuarioService implements UserDetailsService {
         String pwEncoded = encoder.encode(requestDTO.password());
         Usuario usuario = new Usuario(requestDTO, pwEncoded);
         return usuarioRepository.save(usuario);
+    }
+
+    public Usuario findById(Long id) {
+      return usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(""));
+    }
+
+    @Transactional
+    public Usuario updateUsuario(Long id, @Valid UsuarioUpdateDTO updateDTO) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(""));
+        usuario.update(updateDTO);
+        return usuario;
     }
 }

@@ -1,6 +1,7 @@
 package Dutkercz.com.github.project_login_app.entities;
 
 import Dutkercz.com.github.project_login_app.dtos.UsuarioRequestDTO;
+import Dutkercz.com.github.project_login_app.dtos.UsuarioUpdateDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import org.springframework.security.core.GrantedAuthority;
@@ -108,5 +109,10 @@ public class Usuario implements UserDetails {
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    public void update(@Valid UsuarioUpdateDTO updateDTO) {
+       this.email = updateDTO.email();
+       this.password = updateDTO.password();
     }
 }
