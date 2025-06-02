@@ -1,18 +1,15 @@
 package Dutkercz.com.github.project_login_app.services;
 
 import Dutkercz.com.github.project_login_app.dtos.UsuarioRequestDTO;
-import Dutkercz.com.github.project_login_app.dtos.UsuarioResponseDTO;
 import Dutkercz.com.github.project_login_app.dtos.UsuarioUpdateDTO;
 import Dutkercz.com.github.project_login_app.entities.Usuario;
 import Dutkercz.com.github.project_login_app.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +26,8 @@ public class UsuarioService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return usuarioRepository.getByEmail(username);
+        return usuarioRepository.findByEmail(username)
+          .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado."));
     }
 
     @Transactional

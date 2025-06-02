@@ -18,7 +18,7 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain (HttpSecurity security){
     try{
-      return security.csrf(x ->   x.disable())
+      return security.csrf(x -> x.disable())
         .sessionManagement(x -> x.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(x -> {
           x.anyRequest().permitAll();

@@ -2,6 +2,8 @@ package Dutkercz.com.github.project_login_app.entities;
 
 import Dutkercz.com.github.project_login_app.dtos.UsuarioRequestDTO;
 import Dutkercz.com.github.project_login_app.dtos.UsuarioUpdateDTO;
+import Dutkercz.com.github.project_login_app.entities.enums.UserRoles;
+import Dutkercz.com.github.project_login_app.entities.enums.UserStatus;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import org.springframework.security.core.GrantedAuthority;
