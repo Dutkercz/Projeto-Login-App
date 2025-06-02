@@ -1,11 +1,11 @@
-<div class="bg-gradient-to-r from-green-950 to-emerald-500 flex flex-col justify-center min-h-screen items-center px-4">
+<div class="bg-gradient-to-r from-blue-300 via-red-700 to-pink-700 flex flex-col justify-center min-h-screen items-center px-4">
 
-  <h1 class=" mb-10 text-5xl font-bold text-zinc-300">
-    Bem Vindo ao Login-APP
+  <h1 class=" mb-10 text-5xl font-bold text-white">
+    Bem Vindo ao Cadastro-APP
   </h1>
 
   <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full">
-    <h2 class="text-3xl font-bold text-center text-emerald-700 mb-6">Cadastro</h2>
+    <h2 class="text-3xl font-bold text-center text-pink-700 mb-6">Cadastro</h2>
 
     <form id="lugarForm" [formGroup]="camposForm" (ngSubmit)="salvar()">
       <div>
@@ -44,7 +44,7 @@
         *ngIf="isCampoInvalido('password')">Campo obrigatório!</span>
     </div>
 
-      <button type="submit" class="mt-4 w-full bg-emerald-600 text-white font-semibold py-2 rounded-lg hover:bg-emerald-700 transition-colors">
+      <button type="submit" class="mt-4 w-full bg-emerald-900 text-white font-semibold py-2 rounded-lg hover:bg-emerald-600 transition-colors">
         Criar Conta
       </button>
     </form>

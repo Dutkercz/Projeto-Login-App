@@ -7,10 +7,10 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './cadastro.component.html',
+  styleUrl: './cadastro.component.scss'
 })
-export class LoginComponent {
+export class CadastroComponent {
 
   camposForm: FormGroup
   usuarioCampo: Usuario[] = []
