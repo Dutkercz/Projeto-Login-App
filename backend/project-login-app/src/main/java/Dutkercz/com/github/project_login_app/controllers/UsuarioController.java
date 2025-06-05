@@ -26,7 +26,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<UsuarioResponseDTO> cadastrar(@Valid @RequestBody UsuarioRequestDTO requestDTO, UriComponentsBuilder builder){
       Usuario usuario = usuarioService.saveNewUsuario(requestDTO);
-      System.out.println(usuario);
+      System.out.println(usuario.getPassword() + usuario);
       URI uri = builder.path("/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
       return ResponseEntity.created(uri).body(new UsuarioResponseDTO(usuario));
     }

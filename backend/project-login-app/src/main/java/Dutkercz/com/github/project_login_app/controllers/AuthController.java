@@ -37,6 +37,7 @@ public class AuthController {
   public ResponseEntity<?> login(@RequestBody UsuarioLoginDTO loginDTO, HttpServletResponse response) {
     UsernamePasswordAuthenticationToken authToken =
       new UsernamePasswordAuthenticationToken(loginDTO.username(), loginDTO.password());
+    System.out.println(loginDTO.username() + " " + loginDTO.password());
     Authentication authentication = authenticationManager.authenticate(authToken);
     String tokenJWT = jwtService.jwtCreate((Usuario) authentication.getPrincipal());
 
@@ -45,13 +46,15 @@ public class AuthController {
       .httpOnly(true)//Torna o cookie inacessível via JS.
       .secure(false) // usar false em desenv. e true em prod.
       .path("/") //deixa o cookie disponivel para todas as rotas da aplicação
+      .sameSite("Strict")
       .maxAge(Duration.ofHours(1))//duração do cookie
       .build();//finalizando a construição do cookie
 
     //adicionar o cookie no response
+    System.out.println("Bolacha -> " + cookie);
     response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
 
 
-    return ResponseEntity.ok().body("Login realizado com sucesso " + cookie +" "+ tokenJWT);
+    return ResponseEntity.ok().build();
   }
 }
