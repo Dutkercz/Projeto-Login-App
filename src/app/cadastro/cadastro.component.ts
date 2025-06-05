@@ -13,7 +13,6 @@ import { HttpClient } from '@angular/common/http';
 export class CadastroComponent {
 
   camposForm: FormGroup
-  usuarioCampo: Usuario[] = []
   private http = inject(HttpClient)
 
   constructor(){
@@ -47,7 +46,7 @@ export class CadastroComponent {
     }
   }
 
-    isCampoInvalido(nomeDoCampo: string, erro: string = 'required'): boolean{
+  isCampoInvalido(nomeDoCampo: string, erro: string = 'required'): boolean{
     const campo = this.camposForm.get(nomeDoCampo)
     return !!(campo && campo.invalid && campo.touched && campo.errors?.[erro])
   }

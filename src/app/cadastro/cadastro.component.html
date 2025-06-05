@@ -29,12 +29,9 @@
         *ngIf="isCampoInvalido('email')">Campo obrigatório!</span>
         <!--Se estiver em formato invalido!-->
         <span class="text-xs font-bold text-red-500"
-        *ngIf="isCampoInvalido('email', 'email')">Email inválido!</span>
-         
-                    
+        *ngIf="isCampoInvalido('email', 'email')">Email inválido!</span>         
     </div>
-
-      <div>
+    <div>
         <label for="password" class="block text-gray-700 font-medium mb-1">Senha</label>
         <input id="password" type="password" required
         formControlName="password"
