@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { Usuariologin } from '../usuariologin';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,12 @@ export class LoginComponent {
 
   loginForm: FormGroup
   private http = inject(HttpClient)
+  private router = inject(Router)
   loginErro : boolean = false
 
   constructor(){
     this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     })
   }
@@ -30,12 +32,12 @@ export class LoginComponent {
     this.loginForm.markAllAsTouched()
     if(this.loginForm.valid){
       const userLogin : Usuariologin = {
-        email: this.loginForm.value.email,
+        username: this.loginForm.value.username,
         password: this.loginForm.value.password
       }
       this.http.post('http://localhost:8080/auth', userLogin, {withCredentials: true}).subscribe({
-        next: x => {this.loginErro = false},
-        error: x => { this.loginErro = true}
+        next: x => {this.loginErro = false, console.log(x), this.router.navigate(['/home'])},
+        error: x => { this.loginErro = true, console.log(x)}
       })
     }
   }
