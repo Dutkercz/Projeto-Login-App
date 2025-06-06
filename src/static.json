@@ -1,0 +1,6 @@
+{
+  "root": "dist/login-app/browser",
+  "routes": {
+    "/**": "index.html"
+  }
+}

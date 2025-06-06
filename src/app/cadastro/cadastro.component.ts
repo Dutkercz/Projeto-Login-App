@@ -39,6 +39,7 @@ export class CadastroComponent {
             this.camposForm.reset();
           },
           error: (x) => {
+            
             console.error('Erro ao cadastrar usuário:', x);
           }
         })
