@@ -32,7 +32,7 @@ export class CadastroComponent {
         email: this.camposForm.value.email,
         password: this.camposForm.value.password
       }
-      this.http.post('http://localhost:8080/usuarios', newUser)
+      this.http.post('https://back-loginapp.onrender.com/usuarios', newUser)
         .subscribe({
           next: (x) => {
             console.log('Usuário cadastrado com sucesso:', x);

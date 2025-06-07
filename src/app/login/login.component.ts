@@ -35,7 +35,7 @@ export class LoginComponent {
         username: this.loginForm.value.username,
         password: this.loginForm.value.password
       }
-      this.http.post('http://localhost:8080/auth', userLogin, {withCredentials: true}).subscribe({
+      this.http.post('https://back-loginapp.onrender.com/auth', userLogin, {withCredentials: true}).subscribe({
         next: x => {this.loginErro = false, console.log(x), this.router.navigate(['/home'])},
         error: x => { this.loginErro = true, console.log(x)}
       })
