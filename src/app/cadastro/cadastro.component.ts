@@ -3,6 +3,7 @@ import { Usuario } from '../usuario';
 import { CommonModule } from '@angular/common';
 import {ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class CadastroComponent {
 
   camposForm: FormGroup
   private http = inject(HttpClient)
+  private router = inject(Router)
 
   constructor(){
     this.camposForm = new FormGroup({
@@ -34,14 +36,8 @@ export class CadastroComponent {
       }
       this.http.post('https://back-loginapp.onrender.com/usuarios', newUser)
         .subscribe({
-          next: (x) => {
-            console.log('Usuário cadastrado com sucesso:', x);
-            this.camposForm.reset();
-          },
-          error: (x) => {
-            
-            console.error('Erro ao cadastrar usuário:', x);
-          }
+          next: (x) => {this.router.navigate(['/auth']), this.camposForm.reset()},
+          error: (x) => {console.error('Erro ao cadastrar usuário:', x)}
         })
       this.camposForm.reset()
     }
