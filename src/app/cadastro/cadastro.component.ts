@@ -36,7 +36,7 @@ export class CadastroComponent {
       }
       this.http.post('https://back-loginapp.onrender.com/usuarios', newUser)
         .subscribe({
-          next: (x) => {this.router.navigate(['/auth']), this.camposForm.reset()},
+          next: (x) => {this.router.navigate(['/login']), this.camposForm.reset()},
           error: (x) => {console.error('Erro ao cadastrar usuário:', x)}
         })
       this.camposForm.reset()
